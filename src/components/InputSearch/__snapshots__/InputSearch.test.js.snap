@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputSearch should render a InputSearch 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderWidth": 1,
+      "display": "flex",
+      "flexDirection": "row",
+      "marginBottom": 20,
+      "marginLeft": 20,
+      "marginRight": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+    }
+  }
+>
+  <Text>
+    Search:
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "black",
+        "flexGrow": 1,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value=""
+  />
+</View>
+`;
