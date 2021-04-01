@@ -2,26 +2,23 @@
 
 import api from './api';
 
-export type ActionCreated = {|
-  type: string,
-  promise: Promise<any>,
-|};
-
-export type ActionReduxPack = {|
+export type Action = {|
   type: string,
   promise: Promise<any>,
   payload: any,
 |};
 
 const actions = {
-  getPopularMovies: (): ActionCreated => ({
+  getPopularMovies: (): Action => ({
     type: 'GET_POPULAR_MOVIES',
     promise: api('/movie/popular'),
+    payload: '',
   }),
 
-  searchMovies: (search: string): ActionCreated => ({
+  searchMovies: (search: string): Action => ({
     type: 'SEARCH_MOVIES',
     promise: api('/search/movie', {query: search}),
+    payload: '',
   }),
 };
 

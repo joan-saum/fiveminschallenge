@@ -2,11 +2,11 @@
 
 import {handle} from 'redux-pack';
 
-import type {ActionReduxPack} from './actions';
+import type {Action} from './actions';
 
 export const typedHandle = <T>(
   state: T,
-  action: ActionReduxPack,
+  action: Action,
   handlers: {|
     start?: T => T,
     success?: T => T,
@@ -29,14 +29,11 @@ export type State = {|
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
-const defaultState = {
+export const defaultState: State = {
   items: [],
 };
 
-const reducer = (
-  state: State = defaultState,
-  action: ActionReduxPack,
-): State => {
+const reducer = (state: State = defaultState, action: Action): State => {
   const {type, payload} = action;
 
   switch (type) {
