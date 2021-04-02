@@ -11,15 +11,19 @@ import {defaultState} from '../../redux/reducer';
 
 import {configureTests} from '../../utils/mockFetch';
 
-configureTests();
+import navigation from '../../utils/mockNavigation';
 
 import Home from './Home';
+
+configureTests();
 
 const mockStore = configureStore([]);
 
 jest.unmock('./Home');
 
-const defaultProps = {};
+const defaultProps = {
+  navigation,
+};
 
 jest.useFakeTimers();
 
@@ -59,6 +63,30 @@ describe('Home', () => {
     const headerCreated = renderer.create(header);
 
     expect(headerCreated).toMatchSnapshot();
+  });
+
+  it('should navigate to a movie when click on it', () => {
+    const store = mockStore(defaultState);
+    const spyNavigate = jest.spyOn(navigation, 'navigate');
+    const tree = renderer.create(
+      <Provider store={store}>
+        <Home {...defaultProps} />
+      </Provider>,
+    );
+
+    const item = tree.root.findByType(FlatList).props.renderItem({
+      id: 1,
+      title: 'title',
+      overview: 'overview',
+      image: 'image',
+    });
+
+    expect(spyNavigate).toHaveBeenCalledTimes(0);
+
+    item.props.onPress(1);
+
+    expect(spyNavigate).toHaveBeenCalledTimes(1);
+    expect(spyNavigate).toHaveBeenCalledWith('Movie', {id: 1});
   });
 
   it('should dispatch the action search movies when searching a movie', () => {

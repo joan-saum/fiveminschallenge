@@ -15,15 +15,6 @@ export const mockApiSuccess = (response: any) => {
   });
 };
 
-export const mockApiFailure = (response: any) => {
-  fetch.mockResponseOnce(JSON.stringify(response), {
-    status: 555,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-};
-
 export const mockStore = <S>(
   reducer: Reducer<S, Action>,
   preloadedState?: S,

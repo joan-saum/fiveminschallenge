@@ -18,7 +18,7 @@ describe('InputSearch', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should call onSearch only after 1 second without changes', () => {
+  it('should call onSearch only after 2 second without changes', () => {
     const onSearch = jest.fn().mockName('onSearch');
     const tree = renderer.create(<InputSearch onSearch={onSearch} />);
 
@@ -28,14 +28,14 @@ describe('InputSearch', () => {
       tree.root.findByType(TextInput).props.onChangeText('test');
 
       expect(onSearch).toHaveBeenCalledTimes(0);
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
       expect(onSearch).toHaveBeenCalledTimes(0);
 
       tree.root.findByType(TextInput).props.onChangeText('test2');
       expect(onSearch).toHaveBeenCalledTimes(0);
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
       expect(onSearch).toHaveBeenCalledTimes(0);
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
       expect(onSearch).toHaveBeenCalledTimes(1);
       expect(onSearch).toHaveBeenCalledWith('test2');
     });

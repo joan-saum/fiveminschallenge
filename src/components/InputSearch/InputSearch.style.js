@@ -14,9 +14,7 @@ const style = StyleSheet.create({
   },
   input: {
     alignItems: 'center',
-    // borderWidth: 1,
     flexGrow: 1,
-    // height: 35,
     color: 'black',
   },
 });

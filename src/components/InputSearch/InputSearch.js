@@ -11,7 +11,7 @@ type Props = {|
 |};
 
 let timeoutIDSearchMovie: TimeoutID | null = null;
-const TIME_BEFORE_FETCH = 1000;
+const TIME_BEFORE_FETCH = 2000;
 
 const InputSearch = ({onSearch}: Props): Node => {
   const [text, onChangeText] = useState('');

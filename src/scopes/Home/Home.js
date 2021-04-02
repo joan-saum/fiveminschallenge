@@ -8,26 +8,34 @@ import {useSelector, useDispatch} from 'react-redux';
 import actions from '../../redux/actions';
 import type {MovieType} from '../../redux/reducer';
 
+import type {NavigationProps} from '../../types/navigation';
+
 import MovieItem from '../../components/MovieItem/MovieItem';
 import InputSearch from '../../components/InputSearch/InputSearch';
 
-type Props = {||};
+type Props = {|
+  navigation: NavigationProps,
+|};
 
-const Home = ({}: Props): Node => {
+const Home = ({navigation}: Props): Node => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actions.getPopularMovies());
   }, [dispatch]);
 
-  const navigateToItem = useCallback((id: number) => {
-    return null;
-  }, []);
-
-  const renderItem = useCallback(({item}: {item: MovieType}) => {
-      return <MovieItem {...item} onPress={navigateToItem} />;
+  const navigateToMovie = useCallback(
+    (id: number) => {
+      navigation.navigate('Movie', {id});
     },
-    [navigateToItem],
+    [navigation],
+  );
+
+  const renderItem = useCallback(
+    ({item}: {item: MovieType}) => {
+      return <MovieItem {...item} onPress={navigateToMovie} />;
+    },
+    [navigateToMovie],
   );
 
   const keyExtractor = useCallback((item: MovieType) => {
